@@ -1,0 +1,38 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
+*/
+
+$router->get('/', function () use ($router) {
+    return $router->app->version();
+});
+
+
+// API route group
+$router->group(['prefix' => 'api'], function () use ($router) {
+    // Matches "/api/register
+    $router->post('register', 'AuthController@register');
+     // Matches "/api/login
+    $router->post('login', 'AuthController@login');
+
+    // Matches "/api/users/1 
+    //get one user by id
+    $router->post('userbyid', 'UserController@singleUser');
+
+    // Matches "/api/users
+    $router->post('users', 'UserController@allUsers');
+
+    // Matches "/api/userdelete
+    $router->post('userdelete', 'UserController@delete');
+
+    // Matches "/api/userdelete
+    $router->post('userupdate', 'UserController@update');
+});
