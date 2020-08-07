@@ -42,7 +42,8 @@ class MasterColl extends JsonResource
 //CONTROLLER
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\User;
+use App\User as Login;
+use App\User as CurrentModel;
 class UserController extends Controller
 {
     public function __construct()
@@ -50,13 +51,13 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function allUsers(Request $request)
+    public function all(Request $request)
     {
         $input = array(
             'user_login' => 'required|integer'
         );
 
-        $checkUser = User::where('id',$request->user_login)->get();
+        $checkUser = Login::where('id',$request->user_login)->get();
 
         if(count($checkUser)==0){
             return $this->onFailedFindUserLogin(MasterCode::class, $request);
@@ -68,7 +69,7 @@ class UserController extends Controller
             } else{
                 //ubah kodingan hanya yang ada disini ke bawah
                 try {
-                    $data =User::all();
+                    $data =CurrentModel::all();
                     if(count($data)>0){
                         return $this->onSuccessRead(MasterCode::class,MasterColl::collection($data), $request);
                     } else{
@@ -82,14 +83,17 @@ class UserController extends Controller
         }
     }
 
-    public function singleUser(Request $request)
+    public function insert(Request $request)
     {
         $input = array(
             'user_login' => 'required|integer',
-            'id' => 'required|integer'
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+            'password' => 'required|confirmed',
         );
 
-        $checkUser = User::where('id',$request->user_login)->get();
+        $checkUser = Login::where('id',$request->user_login)->get();
 
         if(count($checkUser)==0){
             return $this->onFailedFindUserLogin(MasterCode::class, $request);
@@ -101,11 +105,16 @@ class UserController extends Controller
             } else{
                 //ubah kodingan hanya yang ada disini ke bawah
                 try {
-                    $data = User::where('id',$request->id)->get();
-                    if(count($data)>0){
-                        return $this->onSuccessRead(MasterCode::class,MasterColl::collection($data), $request);
+                    $model = new CurrentModel;
+                    $model->name = $request->name;
+                    $model->email = $request->email;
+                    $plainPassword = $request->password;
+                    $model->password = app('hash')->make($plainPassword);
+
+                    if($model->save() == 1){
+                        return $this->onSuccessInsert(MasterCode::class, $request);
                     } else{
-                        return $this->onFailedRead(MasterCode::class, $request);
+                        return $this->onFailedInsert(MasterCode::class, $request);
                     }
                 } catch (\Exception $e) {
                     return $this->onFailedCatch(MasterCode::class,$e->getMessage(), $request);
@@ -115,14 +124,14 @@ class UserController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function single(Request $request,$id)
     {
+        $primaryKey = 'id';
         $input = array(
-            'user_login' => 'required|integer',
-            'id' => 'required|integer'
+            'user_login' => 'required|integer'
         );
 
-        $checkUser = User::where('id',$request->user_login)->get();
+        $checkUser = Login::where('id',$request->user_login)->get();
 
         if(count($checkUser)==0){
             return $this->onFailedFindUserLogin(MasterCode::class, $request);
@@ -134,14 +143,14 @@ class UserController extends Controller
             } else{
                 //ubah kodingan hanya yang ada disini ke bawah
                 try {
-                    $data = User::where('id', $request->id)->delete();
-                    if($data){
-                        return $this->onSuccessDelete(MasterCode::class, $request);
+                    $data = CurrentModel::where($primaryKey,$id)->get();
+                    if(count($data)>0){
+                        return $this->onSuccessRead(MasterCode::class,MasterColl::collection($data), $request);
                     } else{
-                        return $this->onFailedDelete(MasterCode::class, $request);
+                        return $this->onFailedRead(MasterCode::class, $request);
                     }
                 } catch (\Exception $e) {
-                    return $this->onFailedCatch(MasterCode::class,$e->getMessage(), $request);    
+                    return $this->onFailedCatch(MasterCode::class,$e->getMessage(), $request);
                 }
                 //ubah kodingan hanya yang ada disini ke atas
             }
@@ -150,15 +159,17 @@ class UserController extends Controller
 
     public function update(Request $request)
     {        
+        $primaryKey = 'id';
         $input = array(
             'user_login' => 'required|integer',
-            'id' => 'required|integer',
+            $primaryKey => 'required|integer',
             'name' => 'required|string',
             'email' => 'required|string',
             'password' => 'required|string'
         );
+        $primaryKey_value = $request->id;
         
-        $checkUser = User::where('id',$request->user_login)->get();
+        $checkUser = Login::where('id',$request->user_login)->get();
 
         if(count($checkUser)==0){
             return $this->onFailedFindUserLogin(MasterCode::class, $request);
@@ -175,11 +186,49 @@ class UserController extends Controller
                         'email' => $request->email,
                         'password' => app('hash')->make($request->password)
                     );
-                    $data = User::where('id', $request->id)->update($d);
+                    $data = CurrentModel::where($primaryKey, $primaryKey_value)->update($d);
                     if($data){
                         return $this->onSuccessUpdate(MasterCode::class, $request);
                     } else{
                         return $this->onFailedUpdate(MasterCode::class, $request);
+                    }
+                } catch (\Exception $e) {
+                    return $this->onFailedCatch(MasterCode::class,$e->getMessage(), $request);    
+                }
+                //ubah kodingan hanya yang ada disini ke atas
+            }
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        $primaryKey = 'id';
+        $input = array(
+            'user_login' => 'required|integer',
+            $primaryKey => 'required|integer'
+        );
+        $primaryKey_value = $request->id;
+
+        $checkUser = Login::where('id',$request->user_login)->get();
+
+        if(count($checkUser)==0){
+            return $this->onFailedFindUserLogin(MasterCode::class, $request);
+        } else{
+            $validator = Validator::make($request->all(), $input);
+
+            if($validator->fails()){
+                return $this->onFailedCatch(MasterCode::class,$validator->messages(), $request);
+            } else{
+                //ubah kodingan hanya yang ada disini ke bawah
+                try {
+                    $d = array(
+                        'is_delete' => '1'
+                    );
+                    $data = CurrentModel::where($primaryKey, $primaryKey_value)->update($d);
+                    if($data){
+                        return $this->onSuccessDelete(MasterCode::class, $request);
+                    } else{
+                        return $this->onFailedDelete(MasterCode::class, $request);
                     }
                 } catch (\Exception $e) {
                     return $this->onFailedCatch(MasterCode::class,$e->getMessage(), $request);    
