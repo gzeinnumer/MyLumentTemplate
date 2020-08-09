@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NjgyMTkzNCwiZXhwIjoxNTk2ODI1NTM0LCJuYmYiOjE1OTY4MjE5MzQsImp0aSI6ImpaWEV5VUJUU1p6QnFyVWkiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.16vPlk-UHNaXi3Dje6ffMxNJN8Jz8u49DDLUpIq9DMc",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzAwMzc1NCwiZXhwIjoxNTk3MDA3MzU0LCJuYmYiOjE1OTcwMDM3NTQsImp0aSI6ImdZR3hqYUJRQXg4aEhxTU8iLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.PGQQSZ5O4U6egEmDNMNPjXGWItT7aCVQUPgPUjoUSHA",
 									"type": "string"
 								}
 							]
@@ -24,14 +24,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_login",
-									"value": "",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n    \"user_login\" : \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "localhost:8000/api/users/all",
@@ -56,7 +55,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NjgyMTkzNCwiZXhwIjoxNTk2ODI1NTM0LCJuYmYiOjE1OTY4MjE5MzQsImp0aSI6ImpaWEV5VUJUU1p6QnFyVWkiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.16vPlk-UHNaXi3Dje6ffMxNJN8Jz8u49DDLUpIq9DMc",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzAwMzc1NCwiZXhwIjoxNTk3MDA3MzU0LCJuYmYiOjE1OTcwMDM3NTQsImp0aSI6ImdZR3hqYUJRQXg4aEhxTU8iLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.PGQQSZ5O4U6egEmDNMNPjXGWItT7aCVQUPgPUjoUSHA",
 									"type": "string"
 								}
 							]
@@ -64,34 +63,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_login",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "whut123",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "zeiiin123@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1234567890",
-									"type": "text"
-								},
-								{
-									"key": "password_confirmation",
-									"value": "1234567890",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n    \"user_login\":\"4\",\r\n    \"name\":\"test raw\",\r\n    \"email\":\"test@gmail.com\",\r\n    \"password\":\"1234567890\",\r\n    \"password_confirmation\":\"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "localhost:8000/api/users/insert",
@@ -116,7 +94,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NjgyMTkzNCwiZXhwIjoxNTk2ODI1NTM0LCJuYmYiOjE1OTY4MjE5MzQsImp0aSI6ImpaWEV5VUJUU1p6QnFyVWkiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.16vPlk-UHNaXi3Dje6ffMxNJN8Jz8u49DDLUpIq9DMc",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzAwMzc1NCwiZXhwIjoxNTk3MDA3MzU0LCJuYmYiOjE1OTcwMDM3NTQsImp0aSI6ImdZR3hqYUJRQXg4aEhxTU8iLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.PGQQSZ5O4U6egEmDNMNPjXGWItT7aCVQUPgPUjoUSHA",
 									"type": "string"
 								}
 							]
@@ -124,20 +102,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_login",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
+							"mode": "raw",
+							"raw": "{\r\n    \"user_login\" : \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "localhost:8000/api/users/single/3",
@@ -163,7 +134,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NjU1ODg2MiwiZXhwIjoxNTk2NTYyNDYyLCJuYmYiOjE1OTY1NTg4NjIsImp0aSI6IkVXbnVPd2oxT1prWlJWWlIiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mOByCcqlZ3XcnzJi6Fcce8le45xCYihz64l-C4evu_Q",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzAwMzc1NCwiZXhwIjoxNTk3MDA3MzU0LCJuYmYiOjE1OTcwMDM3NTQsImp0aSI6ImdZR3hqYUJRQXg4aEhxTU8iLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.PGQQSZ5O4U6egEmDNMNPjXGWItT7aCVQUPgPUjoUSHA",
 									"type": "string"
 								}
 							]
@@ -171,44 +142,24 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user_login",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "whut",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "zeiiin@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1234567890",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n    \"user_login\":\"4\",\r\n    \"name\":\"test raw\",\r\n    \"email\":\"testsadasd@gmail.com\",\r\n    \"password\":\"1234567890\",\r\n    \"id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/userupdate",
+							"raw": "localhost:8000/api/users/update",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"userupdate"
+								"users",
+								"update"
 							]
 						}
 					},
@@ -222,7 +173,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NjU0MzI1OSwiZXhwIjoxNTk2NTQ2ODU5LCJuYmYiOjE1OTY1NDMyNTksImp0aSI6ImJNdERaVzBJNDUxWTloczQiLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.vDwDzAeV3BBSN_tEfgFx9bWZTcqV5yBMEAgmLuCdLew",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzAwMzc1NCwiZXhwIjoxNTk3MDA3MzU0LCJuYmYiOjE1OTcwMDM3NTQsImp0aSI6ImdZR3hqYUJRQXg4aEhxTU8iLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.PGQQSZ5O4U6egEmDNMNPjXGWItT7aCVQUPgPUjoUSHA",
 									"type": "string"
 								}
 							]
@@ -235,14 +186,21 @@
 								{
 									"key": "user_login",
 									"value": "12",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "id",
 									"value": "2",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
-							]
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "localhost:8000/api/users/delete",
