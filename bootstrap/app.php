@@ -80,6 +80,10 @@ $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -97,7 +101,10 @@ $app->register(App\Providers\AuthServiceProvider::class);
 
  // Add this line
  $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
  
+ $app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
